@@ -1,33 +1,8 @@
-import { Link, NavLink } from "react-router"
-import { UserCircle2 } from "lucide-react"
+import { Link } from "react-router";
 
 const Login = () => {
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* auth nav */}
-      <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-5">
-        <ul className="flex items-center gap-4 text-base">
-          <li>
-            <NavLink to="/" className="text-gray-800 hover:text-brand">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" className="text-gray-600 hover:text-brand">About</NavLink>
-          </li>
-          <li>
-            <NavLink to="/career" className="text-gray-600 hover:text-brand">Career</NavLink>
-          </li>
-        </ul>
-        <div className="flex items-center gap-3">
-          <UserCircle2 className="w-9 h-9 text-gray-800" strokeWidth={1.5} />
-          <Link
-            to="/login"
-            className="bg-gray-800 text-white font-medium px-6 py-2.5 rounded-sm"
-          >
-            Login
-          </Link>
-        </div>
-      </nav>
-
       {/* form card */}
       <div className="flex justify-center px-4 py-10">
         <div className="w-full max-w-xl bg-white rounded-md shadow-sm px-8 md:px-16 py-12">
@@ -38,7 +13,9 @@ const Login = () => {
 
           <form className="space-y-6">
             <div>
-              <label className="block font-bold text-gray-800 mb-2">Email address</label>
+              <label className="block font-bold text-gray-800 mb-2">
+                Email address
+              </label>
               <input
                 type="email"
                 placeholder="Enter your email address"
@@ -46,7 +23,9 @@ const Login = () => {
               />
             </div>
             <div>
-              <label className="block font-bold text-gray-800 mb-2">Password</label>
+              <label className="block font-bold text-gray-800 mb-2">
+                Password
+              </label>
               <input
                 type="password"
                 placeholder="Enter your password"
@@ -63,12 +42,14 @@ const Login = () => {
 
           <p className="text-center font-semibold text-gray-800 mt-6">
             Dont&apos;t Have An Account ?{" "}
-            <Link to="/register" className="text-brand">Register</Link>
+            <Link to="/auth/register" className="text-brand text-blue-500">
+              Register
+            </Link>
           </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
