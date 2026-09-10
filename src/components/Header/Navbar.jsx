@@ -1,5 +1,6 @@
-import { Link, NavLink } from "react-router"
-import { UserCircle2 } from "lucide-react"
+import { Link, NavLink } from "react-router";
+import { UserCircle2 } from "lucide-react";
+// import
 
 const Navbar = () => {
   const navItems = (
@@ -35,7 +36,7 @@ const Navbar = () => {
         </NavLink>
       </li>
     </>
-  )
+  );
 
   return (
     <nav className="flex items-center justify-between py-4">
@@ -56,7 +57,7 @@ const Navbar = () => {
         </Link>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

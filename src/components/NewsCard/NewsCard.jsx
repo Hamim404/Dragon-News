@@ -1,16 +1,9 @@
-import { Link } from "react-router"
-import { Bookmark, Share2, Star, Eye } from "lucide-react"
+import { Link } from "react-router";
+import { Bookmark, Share2, Star, Eye } from "lucide-react";
 
 const NewsCard = ({ news }) => {
-  const {
-    id,
-    title,
-    author,
-    thumbnail_url,
-    details,
-    rating,
-    total_view,
-  } = news
+  const { id, title, author, thumbnail_url, details, rating, total_view } =
+    news;
 
   return (
     <div className="border border-gray-200 rounded-sm mb-8">
@@ -24,7 +17,7 @@ const NewsCard = ({ news }) => {
           />
           <div>
             <h4 className="font-bold text-gray-900">{author?.name}</h4>
-            <p className="text-sm text-gray-500">{author?.published_date}</p>
+            <p className="text-sm text-gray-500">{author?.published_date.slice(0,10)}</p>
           </div>
         </div>
         <div className="flex items-center gap-4 text-gray-500">
@@ -53,7 +46,10 @@ const NewsCard = ({ news }) => {
           {details?.length > 200 ? (
             <>
               {details.slice(0, 200)}...
-              <Link to={`/news/${id}`} className="text-brand font-medium ml-1">
+              <Link
+                to={`/news/${id}`}
+                className="text-brand font-medium ml-1 text-orange-500"
+              >
                 Read More
               </Link>
             </>
@@ -67,9 +63,14 @@ const NewsCard = ({ news }) => {
       <div className="flex items-center justify-between border-t border-gray-200 px-4 py-4">
         <div className="flex items-center gap-2 text-orange-500">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-5 h-5 fill-orange-500" />
+            <Star
+              key={i}
+              className={`w-5 h-5 ${rating.number > i && "fill-orange-500"}`}
+            />
           ))}
-          <span className="text-gray-700 font-semibold ml-2">{rating.number}</span>
+          <span className="text-gray-700 font-semibold ml-2">
+            {rating.number}
+          </span>
         </div>
         <div className="flex items-center gap-2 text-gray-600">
           <Eye className="w-5 h-5" />
@@ -77,7 +78,7 @@ const NewsCard = ({ news }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NewsCard
+export default NewsCard;

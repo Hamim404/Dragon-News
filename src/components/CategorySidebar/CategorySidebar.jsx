@@ -5,16 +5,23 @@ const CategorySidebar = () => {
   const data = use(categoryPromise);
   return (
     <aside>
-      <h2 className="text-2xl font-bold text-gray-900 mb-5">All Category ({data.length})</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-5">
+        All Category ({data.length})
+      </h2>
 
       <ul className="space-y-1">
         <li>
           {data.map((category) => (
             <NavLink
               key={category.id}
-              className="block text-center py-3 rounded-sm font-medium transition ${
-                isActive hover:bg-gray-200 text-gray-900"
               to={`/category/${category.id}`}
+              className={({ isActive }) =>
+                `block text-center py-3 rounded-sm font-medium transition ${
+                  isActive
+                    ? "bg-brand bg-gray-300 font-bold" // 👈 Styles when active (change to your liking)
+                    : "hover:bg-gray-200 text-gray-900" // 👈 Styles when not active
+                }`
+              }
             >
               {category.name}
             </NavLink>
