@@ -5,7 +5,6 @@ const NewsDetails = () => {
   const news = useLoaderData();
   const { id } = useParams();
   const singleNews = news.find((single) => single.id === id);
-  console.log(singleNews);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

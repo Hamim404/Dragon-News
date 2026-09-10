@@ -8,6 +8,7 @@ import HomeLayouts from "../layouts/HomeLayouts.jsx";
 import CategoryNews from "../pages/CategoryNews/CategoryNews.jsx";
 import { Suspense } from "react";
 import AuthLayouts from "../layouts/AuthLayouts.jsx";
+import PrivateRoute from "../provider/PrivateRoute.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ export const router = createBrowserRouter([
       {
         path: "news/:id",
         loader: () => fetch("/news.json"),
-        element: <NewsDetails />,
+        element: (
+          <PrivateRoute>
+            <NewsDetails />
+          </PrivateRoute>
+        ),
       },
     ],
   },
