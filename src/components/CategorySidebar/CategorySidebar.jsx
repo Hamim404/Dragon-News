@@ -1,11 +1,11 @@
-import { NavLink, useLoaderData } from "react-router";
-
+import { use } from "react";
+import { NavLink } from "react-router";
+const categoryPromise = fetch("/categories.json").then((res) => res.json());
 const CategorySidebar = () => {
-  const data = useLoaderData();
-
+  const data = use(categoryPromise);
   return (
     <aside>
-      <h2 className="text-2xl font-bold text-gray-900 mb-5">All Caterogy</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-5">All Category ({data.length})</h2>
 
       <ul className="space-y-1">
         <li>

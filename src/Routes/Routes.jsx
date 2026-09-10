@@ -1,25 +1,31 @@
 import { createBrowserRouter } from "react-router";
-import Root from "../pages/Root/Root.jsx";
-import Home from "../pages/Home/Home.jsx";
 import NewsDetails from "../pages/NewsDetails/NewsDetails.jsx";
 import Login from "../pages/Login/Login.jsx";
 import Register from "../pages/Register/Register.jsx";
 import NotFound from "../pages/NotFound/NotFound.jsx";
+import NewsFeed from "../components/NewsFeed/NewsFeed.jsx";
+import HomeLayouts from "../layouts/HomeLayouts.jsx";
+import CategoryNews from "../pages/CategoryNews/CategoryNews.jsx";
+import { Suspense } from "react";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <HomeLayouts />,
     errorElement: <NotFound />,
     children: [
       {
         path: "/",
-        loader: () => fetch("categories.json"),
-        element: <Home />,
+        element: (
+          <Suspense fallback={<span>Loading...</span>}>
+            <NewsFeed />
+          </Suspense>
+        ),
       },
       {
         path: "category/:id",
-        element: <h1>Details</h1>,
+        loader: () => fetch("/news.json"),
+        element: <CategoryNews />,
       },
       {
         path: "news/:id",

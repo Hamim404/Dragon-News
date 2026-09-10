@@ -3,10 +3,10 @@ import { Bookmark, Share2, Star, Eye } from "lucide-react"
 
 const NewsCard = ({ news }) => {
   const {
-    _id = "1",
+    id,
     title,
     author,
-    image_url,
+    thumbnail_url,
     details,
     rating,
     total_view,
@@ -44,7 +44,7 @@ const NewsCard = ({ news }) => {
         </h2>
 
         <img
-          src={image_url || "/placeholder.svg"}
+          src={thumbnail_url || "/placeholder.svg"}
           alt={title}
           className="w-full h-72 object-cover rounded-sm mb-4"
         />
@@ -53,7 +53,7 @@ const NewsCard = ({ news }) => {
           {details?.length > 200 ? (
             <>
               {details.slice(0, 200)}...
-              <Link to={`/news/${_id}`} className="text-brand font-medium ml-1">
+              <Link to={`/news/${id}`} className="text-brand font-medium ml-1">
                 Read More
               </Link>
             </>
@@ -69,7 +69,7 @@ const NewsCard = ({ news }) => {
           {[...Array(5)].map((_, i) => (
             <Star key={i} className="w-5 h-5 fill-orange-500" />
           ))}
-          <span className="text-gray-700 font-semibold ml-2">{rating}</span>
+          <span className="text-gray-700 font-semibold ml-2">{rating.number}</span>
         </div>
         <div className="flex items-center gap-2 text-gray-600">
           <Eye className="w-5 h-5" />

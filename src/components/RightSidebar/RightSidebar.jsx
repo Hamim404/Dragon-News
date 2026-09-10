@@ -1,5 +1,11 @@
 import QZone from "../QZone/QZone.jsx";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaGoogle,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 
 const RightSidebar = () => {
   return (
@@ -8,11 +14,13 @@ const RightSidebar = () => {
       <div>
         <h3 className="text-xl font-bold text-gray-900 mb-4">Login With</h3>
         <div className="space-y-3">
-          <button className="w-full border border-blue-400 text-blue-500 font-medium py-2.5 rounded-sm flex items-center justify-center gap-2 hover:bg-blue-50 transition">
-            <span className="font-bold">G</span> Login with Google
+          <button className="w-full border border-blue-400 text-blue-500 font-medium py-2.5 rounded-sm flex items-center justify-center gap-2 hover:bg-blue-50 transition cursor-pointer">
+            <FaGoogle />
+            Login with Google
           </button>
-          <button className="w-full border border-gray-300 text-gray-700 font-medium py-2.5 rounded-sm flex items-center justify-center gap-2 hover:bg-gray-50 transition">
-            <span className="font-bold"></span> Login with Github
+          <button className="w-full border border-gray-300 text-gray-700 font-medium py-2.5 rounded-sm flex items-center justify-center gap-2 hover:bg-gray-50 transition cursor-pointer">
+            <FaGithub />
+            Login with Github
           </button>
         </div>
       </div>
@@ -49,7 +57,7 @@ const RightSidebar = () => {
       <QZone />
 
       {/* Decorative promo block from the layout */}
-      <div className="h-96 rounded-sm bg-gradient-to-b from-indigo-950 via-purple-950 to-black" />
+      <img className="w-100 rounded-sm" src="/src/assets/bg.png" alt="" />
     </aside>
   );
 };
