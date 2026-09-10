@@ -1,6 +1,22 @@
+import { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const { logIn } = use(AuthContext);
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    logIn(email, password)
+      .then(() => {
+        alert("Successfully Logged In");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* form card */}
@@ -11,13 +27,14 @@ const Login = () => {
           </h1>
           <hr className="my-8 border-gray-200" />
 
-          <form className="space-y-6">
+          <form onSubmit={handleLogIn} className="space-y-6">
             <div>
               <label className="block font-bold text-gray-800 mb-2">
                 Email address
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email address"
                 className="w-full bg-gray-100 px-4 py-4 rounded-sm outline-none focus:ring-2 focus:ring-gray-300"
               />
@@ -28,6 +45,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="Enter your password"
                 className="w-full bg-gray-100 px-4 py-4 rounded-sm outline-none focus:ring-2 focus:ring-gray-300"
               />
