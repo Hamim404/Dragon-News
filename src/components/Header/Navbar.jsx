@@ -53,6 +53,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-3">
+        {user && <p>{user.email}</p>}
         {user && user.photoURL ? (
           <img
             src={user.photoURL}

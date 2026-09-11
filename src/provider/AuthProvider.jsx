@@ -14,19 +14,23 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  const [loading, setLoading] = useState(true);
+  
   // Crating new user
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // Login user
   const logIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   // Sign Out
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
@@ -38,16 +42,18 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
       } else {
         console.log("No user Found");
-        setUser(currentUser);
+        setUser(null);
       }
+      setLoading(false);
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   const authData = {
     createUser,
     setUser,
     user,
+    loading,
     logOut,
     logIn,
   };
