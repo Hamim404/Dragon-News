@@ -9,6 +9,7 @@ import CategoryNews from "../pages/CategoryNews/CategoryNews.jsx";
 import { Suspense } from "react";
 import AuthLayouts from "../layouts/AuthLayouts.jsx";
 import PrivateRoute from "../provider/PrivateRoute.jsx";
+import Loading from "../components/Loading/Loading.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={<span>Loading...</span>}>
+          <Suspense fallback={<Loading />}>
             <NewsFeed />
           </Suspense>
         ),
@@ -28,10 +29,12 @@ export const router = createBrowserRouter([
         path: "category/:id",
         loader: () => fetch("/news.json"),
         element: <CategoryNews />,
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "news/:id",
         loader: () => fetch("/news.json"),
+        hydrateFallbackElement: <Loading />,
         element: (
           <PrivateRoute>
             <NewsDetails />

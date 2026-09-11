@@ -2,14 +2,13 @@ import { Link, NavLink } from "react-router";
 import { UserCircle2 } from "lucide-react";
 import { use } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import Loading from "../Loading/Loading";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut, loading } = use(AuthContext);
   const handleLogOut = () => {
     logOut()
-      .then(() => {
-        alert("Logged Out");
-      })
+      .then(() => {})
       .catch((error) => {
         console.log(error);
       });
@@ -53,7 +52,17 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-3">
-        {user && <p>{user.email}</p>}
+        {user && (
+          <p>
+            {loading ? (
+              <Loading></Loading>
+            ) : user.displayName ? (
+              user.displayName
+            ) : (
+              user.email
+            )}
+          </p>
+        )}
         {user && user.photoURL ? (
           <img
             src={user.photoURL}
