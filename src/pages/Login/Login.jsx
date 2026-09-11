@@ -1,10 +1,11 @@
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   const { logIn } = use(AuthContext);
   const location = useLocation();
+  const [error, setError]= useState(null);
   let navigate = useNavigate();
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ const Login = () => {
         navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
-        console.log(error);
+        setError(error)
       });
   };
 
@@ -53,6 +54,7 @@ const Login = () => {
                 className="w-full bg-gray-100 px-4 py-4 rounded-sm outline-none focus:ring-2 focus:ring-gray-300"
               />
             </div>
+            {error && <p className="text-red-500">{error.code}</p>}
             <button
               type="submit"
               className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-4 rounded-sm transition"

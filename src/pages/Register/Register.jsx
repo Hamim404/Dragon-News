@@ -1,23 +1,27 @@
-import { use } from "react";
-import { Link } from "react-router";
+import { use, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
   const { createUser } = use(AuthContext);
+  const [error, setError] = useState(null);
+  let navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
+    // const name = e.target.name.value;
+    // const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
     //Creating new account
     createUser(email, password)
-      .then(() => {})
+      .then(() => {
+        alert("Account created successfully!");
+        navigate("/");
+      })
       .catch((error) => {
-        console.log(error);
+        setError(error);
       });
-    console.log("Logged in", name, photo, email, password);
   };
 
   return (
@@ -90,6 +94,7 @@ const Register = () => {
                 Accept <span className="font-bold">Term &amp; Conditions</span>
               </span>
             </div>
+            {error && <p className="text-red-500">{error.code}</p>}
             <input
               type="submit"
               value="Submit"
