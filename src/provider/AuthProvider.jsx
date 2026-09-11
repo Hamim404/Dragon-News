@@ -44,10 +44,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        console.log("Logged user is: ", currentUser);
+        // console.log("Logged user is: ", currentUser);
         setUser(currentUser);
       } else {
-        console.log("No user Found");
+        // console.log("No user Found");
         setUser(null);
       }
       setLoading(false);
